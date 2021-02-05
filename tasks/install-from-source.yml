@@ -7,10 +7,10 @@
     update: "{{ certbot_keep_updated }}"
     force: true
 
-- name: Install certbot-dns-digitalocean
-  shell: "cd {{certbot_dir}}/{{ item }} && {{ python_executable }} setup.py install"
+- name: Install certbot modules (to use DNS providers)
+  shell: "cd {{certbot_dir}}/{{ item }} && {{ python_executable }} setup.py install --prefix={{ certbot_system_install_prefix }}"
   with_items: "{{ certbot_dns_providers }}"
 
 - name: Set Certbot script variable.
   set_fact:
-    certbot_script: "/usr/local/bin/certbot"
+    certbot_script: "{{ certbot_system_install_prefix }}/bin/certbot"

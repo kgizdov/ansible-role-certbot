@@ -51,3 +51,6 @@ certbot_dns_providers:
 
 # Where to put Certbot when installing from source.
 certbot_dir: /opt/certbot
+
+# System install prefix when installing from source
+certbot_system_install_prefix: /usr/local
